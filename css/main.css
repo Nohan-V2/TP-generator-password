@@ -9,6 +9,11 @@
     --topaz: #817D92;
 }
 
+html {
+    overscroll-behavior: smooth;
+    user-select: none;
+}
+
 body {
     align-items: center;
     background-color: var(--cinder);
