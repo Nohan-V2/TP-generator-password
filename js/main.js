@@ -10,10 +10,10 @@ const $checkboxNumbers = document.querySelector("#numbers");
 const $checkboxSymbols = document.querySelector("#symbols");
 
 const $strengthIndicator = document.querySelector(".strength-indicator");
-const $indicatorTooWeak = document.querySelector(".indicator-too-weak");
-const $indicatorWeak = document.querySelector(".indicator-weak");
-const $indicatorMedium = document.querySelector(".indicator-medium");
-const $indicatorStrong = document.querySelector(".indicator-strong");
+const $indicatorTooWeak = document.querySelector(".indicator-1");
+const $indicatorWeak = document.querySelector(".indicator-2");
+const $indicatorMedium = document.querySelector(".indicator-3");
+const $indicatorStrong = document.querySelector(".indicator-4");
 
 const $submitBtn = document.querySelector("button");
 
@@ -26,7 +26,10 @@ console.log($checkboxLowercase);
 console.log($checkboxNumbers);
 console.log($checkboxSymbols);
 console.log($strengthIndicator);
-console.log($indicator);
+console.log($indicatorTooWeak);
+console.log($indicatorWeak);
+console.log($indicatorMedium);
+console.log($indicatorStrong);
 console.log($submitBtn);
 
 const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -63,6 +66,38 @@ function generatePassword(length) {
   $generatedPassword.textContent = password;
 }
 
+function strengthPassword(isTrue, range) {
+  if (isTrue === 1 || (range >= 0 && range <= 5)) {
+    $strengthIndicator.textContent = "Too Weak";
+
+    $indicatorTooWeak.classList.add("indicator-too-weak");
+    $indicatorWeak.classList.remove("indicator-weak");
+    $indicatorMedium.classList.remove("indicator-medium");
+    $indicatorStrong.classList.remove("indicator-strong");
+  } else if (isTrue === 2 || (range >= 6 && range <= 10)) {
+    $strengthIndicator.textContent = "Weak";
+
+    $indicatorTooWeak.classList.add("indicator-too-weak");
+    $indicatorWeak.classList.add("indicator-weak");
+    $indicatorMedium.classList.remove("indicator-medium");
+    $indicatorStrong.classList.remove("indicator-strong");
+  } else if (isTrue === 3 || (range >= 11 && range <= 15)) {
+    $strengthIndicator.textContent = "Medium";
+
+    $indicatorTooWeak.classList.remove("indicator-too-weak");
+    $indicatorWeak.classList.remove("indicator-weak");
+    $indicatorMedium.classList.add("indicator-medium");
+    $indicatorStrong.classList.remove("indicator-strong");
+  } else if (isTrue === 4 || (range >= 16 && range <= 20)) {
+    $strengthIndicator.textContent = "Strong";
+
+    $indicatorTooWeak.classList.remove("indicator-too-weak");
+    $indicatorWeak.classList.remove("indicator-weak");
+    $indicatorMedium.classList.remove("indicator-medium");
+    $indicatorStrong.classList.add("indicator-strong");
+  }
+}
+
 $copyToClipboardBtn.addEventListener("click", () => {
   const password = $generatedPassword.textContent;
   navigator.clipboard.writeText(password);
@@ -70,7 +105,7 @@ $copyToClipboardBtn.addEventListener("click", () => {
 
 isTrue = 0;
 
-$checkboxUppercase.addEventListener("change", (e) => {
+$checkboxUppercase.addEventListener("click", (e) => {
   if (e.target.checked) {
     isTrue += 1;
   } else {
@@ -79,7 +114,7 @@ $checkboxUppercase.addEventListener("change", (e) => {
   console.log(isTrue);
 });
 
-$checkboxLowercase.addEventListener("change", (e) => {
+$checkboxLowercase.addEventListener("click", (e) => {
   if (e.target.checked) {
     isTrue += 1;
   } else {
@@ -88,7 +123,7 @@ $checkboxLowercase.addEventListener("change", (e) => {
   console.log(isTrue);
 });
 
-$checkboxNumbers.addEventListener("change", (e) => {
+$checkboxNumbers.addEventListener("click", (e) => {
   if (e.target.checked) {
     isTrue += 1;
   } else {
@@ -97,7 +132,7 @@ $checkboxNumbers.addEventListener("change", (e) => {
   console.log(isTrue);
 });
 
-$checkboxSymbols.addEventListener("change", (e) => {
+$checkboxSymbols.addEventListener("click", (e) => {
   if (e.target.checked) {
     isTrue += 1;
   } else {
@@ -130,4 +165,8 @@ $submitBtn.addEventListener("click", (e) => {
   console.log("submit!");
 
   generatePassword($lengthBar.value);
+
+  strengthPassword(isTrue, $lengthBar.value);
+
+  console.log(strengthPassword());
 });
