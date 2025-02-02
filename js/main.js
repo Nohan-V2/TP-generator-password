@@ -67,7 +67,14 @@ function generatePassword(length) {
 }
 
 function strengthPassword(isTrue, range) {
-  if (isTrue === 1 || (range >= 0 && range <= 5)) {
+  if ($generatedPassword.textContent === "") {
+    $strengthIndicator.textContent = "Undefined";
+
+    $indicatorTooWeak.classList.remove("indicator-too-weak");
+    $indicatorWeak.classList.remove("indicator-weak");
+    $indicatorMedium.classList.remove("indicator-medium");
+    $indicatorStrong.classList.remove("indicator-strong");
+  } else if (isTrue === 1 || (range >= 0 && range <= 5)) {
     $strengthIndicator.textContent = "Too Weak";
 
     $indicatorTooWeak.classList.add("indicator-too-weak");
@@ -84,16 +91,16 @@ function strengthPassword(isTrue, range) {
   } else if (isTrue === 3 || (range >= 11 && range <= 15)) {
     $strengthIndicator.textContent = "Medium";
 
-    $indicatorTooWeak.classList.remove("indicator-too-weak");
-    $indicatorWeak.classList.remove("indicator-weak");
+    $indicatorTooWeak.classList.add("indicator-too-weak");
+    $indicatorWeak.classList.add("indicator-weak");
     $indicatorMedium.classList.add("indicator-medium");
     $indicatorStrong.classList.remove("indicator-strong");
   } else if (isTrue === 4 || (range >= 16 && range <= 20)) {
     $strengthIndicator.textContent = "Strong";
 
-    $indicatorTooWeak.classList.remove("indicator-too-weak");
-    $indicatorWeak.classList.remove("indicator-weak");
-    $indicatorMedium.classList.remove("indicator-medium");
+    $indicatorTooWeak.classList.add("indicator-too-weak");
+    $indicatorWeak.classList.add("indicator-weak");
+    $indicatorMedium.classList.add("indicator-medium");
     $indicatorStrong.classList.add("indicator-strong");
   }
 }
