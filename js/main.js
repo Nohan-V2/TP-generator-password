@@ -148,6 +148,32 @@ $checkboxSymbols.addEventListener("click", (e) => {
   console.log(isTrue);
 });
 
+function strenght(range, isTrue) {
+  if (range === 1) {
+    if (isTrue === 1) {
+      $strengthIndicator.textContent = "Too Weak";
+      $indicatorTooWeak.style.width = "25%";
+    } else if (isTrue === 2) {
+      $strengthIndicator.textContent = "Weak";
+      $indicatorWeak.style.width = "50%";
+    } else if (isTrue === 3) {
+      $strengthIndicator.textContent = "Medium";
+      $indicatorMedium.style.width = "75%";
+    } else if (isTrue === 4) {
+      $strengthIndicator.textContent = "Strong";
+      $indicatorStrong.style.width = "100%";
+    }
+  } else if (range === 2) {
+    if (isTrue === 1) {
+      $strengthIndicator.textContent = "Too Weak";
+      $indicatorTooWeak.style.width = "25%";
+    } else if (isTrue === 2) {
+      $strengthIndicator.textContent = "Weak";
+      $indicatorWeak.style;
+    }
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   $generatedPassword.textContent = "Generated Password";
 
